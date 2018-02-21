@@ -52,8 +52,7 @@ const createBeerLi = function (label, text) {
 const createImage = function (url) {
   const img = document.createElement('img');
   const li = document.createElement('li');
-  // img.width = "300";
-  img.height = "300";
+  img.height = "200";
   img.src = url;
   li.appendChild(img);
   return li;
