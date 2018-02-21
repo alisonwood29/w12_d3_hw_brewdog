@@ -18,20 +18,54 @@ const requestComplete = function () {
   populateList(beers);
 }
 
-
-const addListItem = function (text) {
-  const li = document.createElement('li');
-  li.innerText = text;
-  const ul = document.getElementById('beer-list');
-  ul.appendChild(li);
-}
-
-
 const populateList = function (beers) {
   console.log(beers);
   beers.forEach(function (beer) {
-    addListItem(beer.name);
-  })
+    addBeerListItem(beer.name, beer.image_url);
+  });
 }
+
+const addBeerListItem = function (name, image) {
+  const beerContainer = createUl();
+  const beerName = createBeerLi("Name", name);
+  const beerImage = createImage(image);
+
+  const beers = document.getElementById("beers");
+  appendElements(beers, beerContainer, beerName, beerImage);
+}
+
+
+
+
+const createUl = function () {
+  const ul = document.createElement('ul');
+  ul.classList.add('beer');
+  return ul;
+}
+
+const createBeerLi = function (label, text) {
+  const li = document.createElement('li');
+  li.innerText = `${label}: ${text}`
+  return li;
+}
+
+const createImage = function (url) {
+  const img = document.createElement('img');
+  const li = document.createElement('li');
+  // img.width = "300";
+  img.height = "300";
+  img.src = url;
+  li.appendChild(img);
+  return li;
+}
+
+const appendElements = function (beers, beerContainer, name, image) {
+  beerContainer.appendChild(name);
+  beerContainer.appendChild(image);
+
+  beers.appendChild(beerContainer);
+}
+
+
 
 document.addEventListener('DOMContentLoaded', app);
